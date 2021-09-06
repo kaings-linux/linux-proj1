@@ -1,6 +1,6 @@
-to show the manual of command
-syntax: man -k <file/command>
-e.g.:
+//to show the manual of command
+//syntax: man -k <file/command>
+//e.g.:
 // this will show all sections manual of 'which' command.
 // refer to 'Manual+Structure+Cheat+Sheet.pdf' for the sections
 `man -k which`
@@ -11,6 +11,55 @@ e.g.:
 `man ls`
 `man lscpu`
 `man nproc`
+
+// ref of brackets in linux: 
+// [] ... optional
+// <> ... mandatory
+
+
+====================== Command Input & Output ======================
+// 4 possible ways to get data into & out frm command:
+// - Standard Input (stream number is 0)  ... is a standard data stream
+// - Standard Output (stream number is 1) ... is a standard data stream
+// - Standard Error (stream number is 2)  ... is a standard data stream
+// - Command Arguments   ... is NOT a data stream, e.g.: `cal 12 2017` (command that only deals with arguments they have at that moment, not data stream)
+
+
+// normal standart output
+cat file.txt
+
+// redirect standard output into a file ('1' is because standard output stream number is '1', standard input is '0', standard erro is '2')
+cat 1> output.txt     OR      cat > output.txt
+
+// redirect standard error into a file
+cat wrongcommand 2> erroroutput.txt
+
+// redirect standard output by appending the content into a file (with existing content)
+cat 1>> output.txt     OR      cat >> output.txt
+
+// redirect standard error by appending the content into a file (with existing content)
+cat 2>> output.txt
+
+// redirect the standard output of the ls  command to output.txt  but at the same time 
+// redirect standard error to error.txt
+ls 1> output.txt 2> error.txt
+
+// to get standard input from a file
+cat 0< input.txt       OR      cat < input.txt
+
+// to get standard input from a file & output it into another file
+cat 0< input.txt 1> output.txt      OR      cat < input.txt > output.txt
+
+
+// redirect standard output to another terminal
+// open another new terminal & run `tty`   ... to show path of current running terminal
+```
+tty
+/dev/pts/0
+```
+// on other terminal run. This will cause the content of input.txt to be 
+// output to terminal on /dev/pts/0
+cat 0< input.txt > /dev/pts/0
 
 
 
