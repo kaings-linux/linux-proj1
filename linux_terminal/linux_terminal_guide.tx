@@ -126,5 +126,8 @@ cat filetodelete.txt | rm          --> WON'T WORK, because rm needs xargs to con
 
 cat filetodelete.txt | xargs rm    --> WORKS!
 
+// another `xargs` command example
+echo '12 2018' | xargs cal > caloutput.txt
+
 
 
