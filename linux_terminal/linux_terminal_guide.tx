@@ -88,4 +88,21 @@ M
 // this DOES NOT work because the output is redirected into a file before it is piped to cut command
 date > dateoutput.txt | cut --delimiter=' ' --fields=1
 
+// in order to pass the data to output file & still piping it to another command 
+// (a fix to above example that WON't work - `date > dateoutput.txt | cut --delimiter=' ' --fields=1`)
+// the answer is by using `tee` command. It functions like a 'T' junction to pass data to standard output but
+// still maintaining to stream it through the pipe
+// this way, fulldate.txt will have full date content, & piping date via cut will result in 'Mon'
+date | tee fulldate.txt | cut --delimiter ' ' --fields 1
+
+// Addionally, fulldate.txt will have full date content, & day.txt will have only day of the date content
+date | tee fulldate.txt | cut --delimiter ' ' --fields 1 > day.txt
+```
+cat fulldate.txt 
+Mon Sep  6 09:45:47 UTC 2021
+
+cat day.txt 
+Mon
+```
+
 
