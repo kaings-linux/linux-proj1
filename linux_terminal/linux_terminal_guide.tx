@@ -1,0 +1,18 @@
+to show the manual of command
+syntax: man -k <file/command>
+e.g.:
+// this will show all sections manual of 'which' command.
+// refer to 'Manual+Structure+Cheat+Sheet.pdf' for the sections
+`man -k which`
+
+// to show only section 1 manual of 'which' command. By default, 
+// `man` command will use assume section 1 if not specified
+`man 1 which`   OR   `man which`
+`man ls`
+`man lscpu`
+`man nproc`
+
+
+
+
+
