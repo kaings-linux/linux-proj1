@@ -106,3 +106,25 @@ Mon
 ```
 
 
+// `echo` is a command arguments (NOT data stream), it does not accept stream input.
+// Therefore, the following command does not work since `echo` only accept an arguments
+echo 'Hello World'        --> works!
+date | echo               --> not working
+
+// to MAKE `echo` to printout output of `date` command, we need to CONVERT output stream from
+// `date` command into an argument, we use `xargs` command
+date | xargs echo         --> works!
+
+// same as `echo`, `rm` also a command arguments, it does not accept stream input. demo example,
+echo 'file 1' > file1.txt 
+echo 'file 2' > file2.txt
+echo 'file1.txt' > filetodelete.txt
+echo 'file2.txt' >> filetodelete.txt
+
+// to delete all files listed in the file filetodelete.txt
+cat filetodelete.txt | rm          --> WON'T WORK, because rm needs xargs to convert the stream output into arguments
+
+cat filetodelete.txt | xargs rm    --> WORKS!
+
+
+
