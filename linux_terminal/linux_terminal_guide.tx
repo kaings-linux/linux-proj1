@@ -130,4 +130,6 @@ cat filetodelete.txt | xargs rm    --> WORKS!
 echo '12 2018' | xargs cal > caloutput.txt
 
 
-
+====================== Aliases ======================
+// we can create command aliases in file `.bash_aliases`
+// syntax: alias <alias-name>='command1 -options args | command2 -options args ...'
