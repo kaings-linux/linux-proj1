@@ -62,6 +62,27 @@ tty
 cat 0< input.txt > /dev/pts/0
 
 
+====================== Piping ======================
+// taking standard output of one command & piping it to standard input of another Command
 
+// print standard output of command `date` to file `date.txt`
+date > date.txt        OR       date 1> date.txt
+Mon Sep  6 09:27:00 UTC 2021
+
+// print standard output of the day only ("Mon" only & not the full date)
+// in this case, we can use pipe `|`. By piping the outuput of `date` command, pipe it to `cut` command to 
+// cut out 1st element only & output it into a file. FYI we can use pipe `|` as many as we want
+date | cut --delimiter=' ' --fields=1 > today.txt
+
+// using pipe
+date | cut --delimiter=' ' --fields=1
+```
+Mon
+```
+
+date | cut --delimiter=' ' --fields=1 | cut --delimiter 'o' --fields 1
+```
+M
+```
 
 
