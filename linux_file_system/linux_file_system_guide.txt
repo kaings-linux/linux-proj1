@@ -36,3 +36,18 @@ ls file[1-2a-c].txt           --> use regex
 
 // copy recursively
 // `cp -r sourcefolder/ destinationfolder/` ... copy all content frm 'sourcefolder' to 'destinationfolder'
+
+
+// ================ using locate ================ 
+// might need to install package 'locate' & 'mlocate': apt-get install mlocate locate OR apt install mlocate locate
+// basically how it works: 'locate' command will locate/search whatever we ask in the 'mlocate' DB. mlocate is a file system DB (it maps all the file system in it)
+locate *.CONF               --> zero result because no such extension of 'CONF' it is case-sensitive
+locate -i *.CONF            --> locate case-insensitively, all files with extension ".conf" will be shown
+locate -i --limit 5 *.CONF  --> locate case-insensitively, only 5 files with extension ".conf" will be shown
+locate -S                   --> to show information of mlocate database
+locate -e *.conf            --> show only files that exist (mlocate db is only updated by the filesystem once per day so there might be file that doesn't exist anymore if we only use `locate *.conf`)
+
+// since mlocate db is only updated once per day (by crontab using updatedb), we can also run updatedb to
+// make sure our locate command returns accurat result
+sudo updatedb
+
