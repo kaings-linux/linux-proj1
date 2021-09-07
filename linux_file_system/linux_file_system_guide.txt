@@ -28,6 +28,11 @@ touch file{a,b,c,d,e}.txt
 ls file[1-2a-c].txt           --> use regex
 
 
+// remove directory
+// `rmdir` ... only remove empty directory
+// `rm`    ... remove files
+// `rm -r` ... remove recursively, remove directory & files within it
 
 
-
+// copy recursively
+// `cp -r sourcefolder/ destinationfolder/` ... copy all content frm 'sourcefolder' to 'destinationfolder'
