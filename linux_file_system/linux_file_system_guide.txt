@@ -23,5 +23,11 @@ touch file{A..F}.txt
 touch file{a,b,c,d,e}.txt
 
 
+// use wildcard ?, *, [] in linux file system
+// list file name file1.txt, file2.txt, filea.txt, fileb.txt, filec.txt
+ls file[1-2a-c].txt           --> use regex
+
+
+
 
 
