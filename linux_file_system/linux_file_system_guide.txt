@@ -1,0 +1,27 @@
+// to create multiple directories using one command, we can use curly brackets "{" "}"
+// the following command will create directories: jan_2000 ~ jan_2005, feb_2000 ~ feb_2005, ... , dec_2000 ~ dec_2005 
+mkdir {jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec}_{2000,2001,2002,2003,2004,2005}
+
+OR
+
+mkdir {jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec}_{2000..2005}           --> shorthand version
+
+
+// to create multiple files within multiple directories using curly brackets
+mkdir {jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec}_{2000..2005}                    --> cannot `touch` if directory not exist
+touch {jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec}_{2000..2005}/file{1..100}.txt
+
+
+// to list multiple files within multiple directories using curly brackets & redirect into output.txt
+ls {jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec}_{2000..2005}
+ls {jan,feb,mar,apr,may,jun,jul,aug,sep,oct,nov,dec}_{2000..2005} > output.txt
+
+
+// create multiple files in current directory using curly brackets
+touch file{1..10}.txt
+touch file{A..F}.txt
+touch file{a,b,c,d,e}.txt
+
+
+
+
