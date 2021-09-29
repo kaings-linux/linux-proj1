@@ -53,8 +53,38 @@ sudo updatedb
 
 
 // ================ using find ================ 
-find -maxdepth 1                ... find only 1 level down
+find -maxdepth 1                ... find only 1 level down, OR
+find . -maxdepth 1              ... find only 1 level down ('.' means current directory)
 find -type f                    ... find only file
 find -type d                    ... find only directory
 find -name "*.txt"              ... find by name (case-sensitive)
 find -iname "*.txt"             ... find by name (case-insensitive)
+find . -type f -size +10k       ... find files which size is more than 10kb
+find . -type f -size -10k       ... find files which size is less than 10kb
+find . -type f -size +10k | wc -l         ... find files which size is more than 10kb & count the line
+find . -type f -size +10k -size -5M       ... find files which size is more than 10kb AND less than 5Mb
+find . -type f -size -10k -o -size +5M    ... find files which size is less than 10kb OR more than 5Mb
+
+find . -type f -size +10k -size -5M -exec cp {} ./destdir \;    ... find files which size is more than 10kb & less than 5Mb, and copy each one of them into 'destdir' folder
+                                                                    syntax: find -exec <command - end of command is indicated by `\;`>
+                                                                    --> to execute command on each one of the found item
+                                                                    --> copy syntax: cp <WHAT <TOWHERE> ... e.g.: cp {} ./destdir ... `{}` in this case is filled by the result of find command
+
+find . -type f -size +10k -size -5M -exec cp {} ./destdir \;    ... same as `-exec` option but with `-ok`, it will ask you each time each file (which is safer than `-exec`)
+
+
+// FIND COMMAND EXERCISE
+// create 100 files in 500 folders
+mkdir haystack
+mkdir haystack/folder{1..500}
+touch haystack/folder{1..500}/file{1..100}
+
+// create 1 file "needle.txt" in any of the 500 folders randomly
+// randomise using `shuf` command
+touch haystack/folder$(shuf -i 1-500 -n 1)/needle.txt
+
+// find needle.txt
+find haystack/ -type f -name "needle.txt"
+
+// find needle.txt & move it to "destdir"
+find haystack/ -type f -name "needle.txt" -exec mv {} ./destdir \;
