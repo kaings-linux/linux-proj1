@@ -51,3 +51,10 @@ locate -e *.conf            --> show only files that exist (mlocate db is only u
 // make sure our locate command returns accurat result
 sudo updatedb
 
+
+// ================ using find ================ 
+find -maxdepth 1                ... find only 1 level down
+find -type f                    ... find only file
+find -type d                    ... find only directory
+find -name "*.txt"              ... find by name (case-sensitive)
+find -iname "*.txt"             ... find by name (case-insensitive)
