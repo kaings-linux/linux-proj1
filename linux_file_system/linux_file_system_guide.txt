@@ -88,3 +88,46 @@ find haystack/ -type f -name "needle.txt"
 
 // find needle.txt & move it to "destdir"
 find haystack/ -type f -name "needle.txt" -exec mv {} ./destdir \;
+
+
+// ================ using cat ================ 
+cat file1.txt                                           ... to view the content of file1.txt
+cat file1.txt file2.txt file3.txt file4.txt file5.txt   ... to view concatenated content of file1.txt to file5.txt
+cat file[1-5].txt                                       ... to view concatenated content of file1.txt to file5.txt
+cat file[1-5].txt > fileA.txt                           ... to view concatenated content of file1.txt to file5.txt & output stream to new fileA.txt
+
+
+// ================ using tac & rev ================ 
+cat file[1-5].txt | tac     ... tac to reverse the content vertically (content will be displayed as content of file5.txt to file1.txt)
+tac fileA.txt               ... paragraph of fileA.txt will be reversed (vertically reversed)
+cat file[1-5].txt | rev     ... rev to reverse the content horizontally  (e.g. people will be 'elpoep', etc)
+rev fileA.txt               ... statement of fileA.txt will be reversed (horizontally reversed)
+
+
+// ================ using wc, head & tail ================ 
+find . | head -n 5                       ... show the first 5 lines of find command result
+find . | tail -n 5                       ... show the last 5 lines of find command result
+find . | wc -l                           ... show number of lines of find command result
+cat file[1-5].txt | tail -n 2            ... show bottom 2 lines of content of file1.txt to file5.txt
+tail -n 20 /etc/somedir/somefile.txt     ... show bottom 20 lines of the somefile.txt content
+
+
+// ================ using sort ================ 
+sort words.txt       ... sort ascending content of words.txt
+sort -r words.txt    ... sort descending content of words.txt
+sort -n nums.txt     ... sort ascending numeric content of nums.txt
+sort -nr numss.txt   ... sort descending numeric content of nums.txt
+
+
+// ================ using grep ================ 
+grep e hello.txt       ... search within hello.txt for letter 'e'
+grep -c e hello.txt    ... count within hello.txt for letter 'e' 
+grep gadsby gadsbybook.txt       ... search (case-sensitively) within gadsbybook.txt for word 'gadsby' 
+grep -i gadsby gadsbybook.txt    ... search (case-insensitively) within gadsbybook.txt for word 'gadsby' 
+grep -c gadsby gadsbybook.txt    ... count lines (case-sensitively) within gadsbybook.txt for line contains of word 'gadsby' 
+grep -ci gadsby gadsbybook.txt   ... count lines (case-insensitively) within gadsbybook.txt for line contains of word 'gadsby'
+grep -cv e gadsbybook.txt        ... count lines within gadsbybook.txt for line NOT contains of letter 'e' (`-v` is for the exclusion option)
+
+
+
+
