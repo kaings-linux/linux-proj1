@@ -129,5 +129,43 @@ grep -ci gadsby gadsbybook.txt   ... count lines (case-insensitively) within gad
 grep -cv e gadsbybook.txt        ... count lines within gadsbybook.txt for line NOT contains of letter 'e' (`-v` is for the exclusion option)
 
 
+// ================ using tar, gzip, bzip2, zip ================ 
+touch file{1..3}.txt
+echo "demo file" > file1.txt
+echo "demo file" > file2.txt
+echo "demo file" > file3.txt
+
+
+// create tar file (just a container file - NOT zipping yet) of file1.txt ~ file3.txt
+tar -cvf archive.tar file[1-3].txt      ... `-c` (create), `-v` (verbose), `-f` (files - we need this because we specify files)
+file archive.tar                        ... check the details of the file
+tar -tf archive.tar                     ... allow us to check content inside tar file. `-t` (test label), `-f` (file)
+tar -xvf archive.tar                    ... to extract tar file content. `-x` (extract) - opposite of `-c`
+
+
+// compress tar file with gzip - gzip is faster than bzip2 but has less compression power
+tar -cvf archive.tar file[1-3].txt      ... step1: create tar file
+gzip archive.tar                        ... step2: compress tar file to gzip (extension .gz)
+OR
+tar -cvzf archive.tar.gz file[1-3].txt  ... step1&step2: create tar file & compress it using gzip
+
+// uncompress using gzip
+gunzip archive.tar.gz                   ... uncompress gz file to tar file
+tar -xvzf archive.tar.gz                ... uncompress gz file & extract tar file to files (to tar file --> to files)
+
+
+// compress tar file with bzip2 - bzip2 has more compression power (esp for large files) vs gzip but slower
+tar -cvf archive.tar file[1-3].txt      ... step1: create tar file
+bzip2 archive.tar                       ... step2: compress tar file to bzip2 (extension .bz2)
+OR
+tar -cvjf archive.tar.bz2 file[1-3].txt ... step1&step2: create tar file & compress it using bzip2
+
+// uncompress using bzip2
+bunzip2 archive.tar.bz2                  ... uncompress bz2 file to tar file
+tar -xvjf archive.tar.bz2                ... uncompress bz2 file & extract tar file to files (to tar file --> to files)
+
+
+// compress files with zip
+zip archive.zip file[1-3].txt           ... compress (zip) files at once (no need to create tar file)
 
 
