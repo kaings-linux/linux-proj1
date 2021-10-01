@@ -169,3 +169,26 @@ tar -xvjf archive.tar.bz2                ... uncompress bz2 file & extract tar f
 zip archive.zip file[1-3].txt           ... compress (zip) files at once (no need to create tar file)
 
 
+// ================ using bash script, crontab ================ 
+// creating bash script
+// - start the content of the script with `#!/<path-to-interpreter>` (in case of `bash`, points to `bash` interpreter, can be showne by `which bash`)
+// - if we wanna create python script, start the content of the script with `#!/usr/bin/python3` (points to python3 interpreter)
+
+// using crontab to run cron job
+crontab -e          ... open/edit crontab
+
+// crontab format is `m h dom mon dow command` ... <minute> <hour> <day-of-month> <month> <day-of-week> <command> (separated by white space ' ')
+*     *    10    *      *      echo "Hello!" ... execute command every 10th of the month
+*    14     *    *      *      echo "Hello!" ... execute command every 14:00 each day
+20   11     *    *      *      echo "Hello!" ... execute command every 11:20 each day
+20   11     *    JUN    SUN    echo "Hello!" ... execute command every 11:20 each day on JUN ONLY IF it is Sunday
+*     *    10    JUN    MON    echo "Hello!" ... execute command on 10 JUN ONLY IF it is Monday
+
+// advanced crontab usage
+0,15,30,45      *       *       *        *       echo "Hello!" ... execute command everyday at 0min, 15mins, 30mins, 45mins
+*/15            *       *       *        *       echo "Hello!" ... execute command everyday every 15mins
+*/15            *       */3     *        *       echo "Hello!" ... execute command every 3days every 15mins
+59             23       *       JAN,DEC  SUN     echo "Hello!" ... execute command at 23:59 on JAN & DEC ONLY IF it is Sunday
+
+
+
