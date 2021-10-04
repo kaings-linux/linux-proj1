@@ -1,0 +1,27 @@
+// example of apt-cache
+apt-cache search docx           ... search from cache packages related to docx
+apt-cache search "web server"   ... search from cache packages related to web server
+
+apt-cache show docx2txt         ... show details of package docx2txt
+apt-cache show apache2          ... show details of package apache2
+
+
+// cache information is saved in the list `/var/lib/apt/lists/`
+ls /var/lib/apt/lists           ... show all caches lists (of `apt-cache`). We can even edit the package by modifying into it using nano
+
+
+// update the list of caches
+apt-get update
+
+// update all packages (software) to the latest version
+apt-get upgrade
+
+// remove package
+apt-get remove <package> ... not recommended as this WILL NOT remove its configuration files
+apt-get purge <package>  ... this is BETTER approach than `apt-get remove <package>` since this will also remove its configuration files
+
+apt-get autoremove       ... remove all package dependencies
+apt-get autoclean        ... remove package archives that you can no longer find in the ubuntu repositories (the legacy one)
+apt-get clean            ... remove all package archives
+
+
